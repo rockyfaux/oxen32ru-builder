@@ -33,29 +33,29 @@ internal class Program
         bool isVerbose = false;
         string version = "";
         bool isProduction = false;
-        if (args.Length > 2) {
-            for (int i = 2; i < args.Length; i++) {
-                if (args[i] == "-l") {
-                    string[] langs = args[i + 1].Split(',');
-                    for (int j = 0; j < langs.Length; j++) {
-                        var l = langs[j].ToLower();
-                        if (l != "en" && l != "es-419") {
-                            Console.WriteLine("Only supported languages are 'en' and 'es-419'");
-                            return 1;
-                        }
-                        languages.Add(l);
+        for (int i = 0; i < args.Length; i++) {
+            if (args[i] == "-l") {
+                string[] langs = args[i + 1].Split(',');
+                for (int j = 0; j < langs.Length; j++) {
+                    var l = langs[j].ToLower();
+                    if (l != "en" && l != "es-419") {
+                        Console.WriteLine("Only supported languages are 'en' and 'es-419'");
+                        return 1;
                     }
-                }
-                else if (args[i] == "--prod") {
-                    isProduction = true;
-                }
-                else if (args[i] == "--verbose") {
-                    isVerbose = true;
-                } else if (args[i] == "-t") {
-                    version = args[i + 1];
+                    languages.Add(l);
                 }
             }
+            else if (args[i] == "--prod") {
+                isProduction = true;
+            }
+            else if (args[i] == "--verbose") {
+                isVerbose = true;
+            } else if (args[i] == "-t") {
+                version = args[i + 1];
+            }
         }
+
+        Console.WriteLine($"INFO: replacing language(-s): {String.Join(", ", languages)}");
 
         var bundleFileName = args[args.Length-2];
         var tsvFileName = args[args.Length-1];
