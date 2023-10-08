@@ -130,8 +130,11 @@ internal class Program
             }
             
             bool ignore = toIgnore.Contains(scene);
-            if (text.Length == 0 && parts[enCol].Length > 0 && !ignore) {
-                text = parts[enCol] + "-><пусто>";
+            if (text.Length == 0 && parts[enCol].Length > 0) {
+                text = parts[enCol];
+                if (!isProduction && !ignore) {
+                    text = text + "-><пусто>";
+                }
             }
 
             if (!isProduction && !ignore && parts[textCol] != "DO NOT DELETE OR CHANGE") {
