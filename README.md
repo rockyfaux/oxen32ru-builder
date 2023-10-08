@@ -18,17 +18,30 @@ dotnet build
 Для замены одной из испанских локализаций:
 
 ```
-trepack.exe -l es-419 -t nightly-yymmdd loc_packages_assets_.bundle loc_packages_assets.tsv
+oxen32pack.exe -l es-419 -t nightly-yymmdd loc_packages_assets_.bundle loc_packages_assets.tsv
 
-trepack.exe -l es-419 -t nightly-yymmdd dialogue_packages_assets_all.bundle dialogue_packages_assets_all.tsv
+oxen32pack.exe -l es-419 -t nightly-yymmdd dialogue_packages_assets_all.bundle dialogue_packages_assets_all.tsv
 
 ```
 
 Для замены английской:
 
 ```
-trepack.exe -l en -t nightly-yymmdd loc_packages_assets_.bundle loc_packages_assets.tsv
+oxen32pack.exe -l en -t nightly-yymmdd loc_packages_assets_.bundle loc_packages_assets.tsv
 
-trepack.exe -l en -t nightly-yymmdd dialogue_packages_assets_all.bundle dialogue_packages_assets_all.tsv
+oxen32pack.exe -l en -t nightly-yymmdd dialogue_packages_assets_all.bundle dialogue_packages_assets_all.tsv
 
 ```
+
+# Скрипт для удобства сборки build.cmd
+
+## Назначение
+
+Скачивает последний перевод (файлы .tsv) и запускает сборщик по одному из сценариев (выбирается в коммандной строке: prod, rc или отладочная бета (по-умолчанию)).
+
+
+## Требования
+
+* Файлы loc_packages_assets_.bundle и dialogue_packages_assets_all.bundle в этой же папке
+* Модифицированный файл resources.assets в этой же папке
+* Архиватор 7-Zip (путь указывается в переменной SEVENZIP_PATH, по-умолчанию: c:\Program Files\7-Zip\7z.exe")
